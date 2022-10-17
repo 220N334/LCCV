@@ -1,6 +1,7 @@
 project "LCCV"
 	kind "StaticLib"
-	language "C"
+	language "C++"
+	cppdialect "C++17"
 	staticruntime "off"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
@@ -10,11 +11,18 @@ project "LCCV"
     {
         "include/lccv.hpp",
         "include/libcamera_app.hpp",
-        "include/libcamera_app_options.hpp"
-        "src/lccv.hpp",
-        "src/libcamera_app.hpp",
-        "src/libcamera_app_options.hpp"
+        "include/libcamera_app_options.hpp",
+        "src/lccv.cpp",
+        "src/libcamera_app.cpp",
+        "src/libcamera_app_options.cpp"
     }
+
+    includedirs
+    {
+    	"/usr/local/include/opencv4",
+        "/usr/include/libcamera"
+    }
+
     filter "system:linux"
         pic "On"
         systemversion "latest"
